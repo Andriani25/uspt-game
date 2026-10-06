@@ -1,13 +1,129 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>default-vite-react-project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Torres</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+        background: #07060b;
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
+      }
+
+      #game {
+        display: block;
+        position: fixed;
+        inset: 0;
+      }
+
+      #overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(5, 4, 10, 0.78);
+        backdrop-filter: blur(3px);
+        z-index: 10;
+      }
+
+      #overlay.hidden {
+        display: none;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .panel {
+        text-align: center;
+        padding: 44px 56px;
+        border: 2px solid #a855f7;
+        border-radius: 14px;
+        background: rgba(12, 8, 22, 0.9);
+        box-shadow:
+          0 0 32px rgba(168, 85, 247, 0.45),
+          inset 0 0 24px rgba(168, 85, 247, 0.12);
+      }
+
+      .panel h1 {
+        font-size: clamp(42px, 8vw, 72px);
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        color: #f3e8ff;
+        text-shadow:
+          0 0 12px #a855f7,
+          0 0 42px #a855f7;
+        margin-bottom: 18px;
+      }
+
+      .panel p {
+        color: #c4b5fd;
+        font-size: 15px;
+        letter-spacing: 0.06em;
+        line-height: 1.6;
+        margin-bottom: 10px;
+      }
+
+      #stats {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 18px;
+        color: #f3e8ff;
+        margin: 18px 0 26px;
+      }
+
+      #msg {
+        margin-bottom: 26px;
+      }
+
+      #action {
+        font: inherit;
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        padding: 14px 46px;
+        color: #0a0612;
+        background: linear-gradient(180deg, #c084fc, #9333ea);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 0 22px rgba(168, 85, 247, 0.6);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+      }
+
+      #action:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 34px rgba(192, 132, 252, 0.85);
+      }
+
+      #action:active {
+        transform: translateY(0);
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <canvas id="game"></canvas>
+    <div id="overlay">
+      <div class="panel">
+        <h1 id="title">TORRES</h1>
+        <p id="msg">Presiona ESPACIO (o haz clic) para soltar el bloque</p>
+        <p id="stats" class="hidden"></p>
+        <button id="action" type="button">START</button>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
