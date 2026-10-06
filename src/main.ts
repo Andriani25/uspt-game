@@ -384,7 +384,7 @@ function drawHud(): void {
     ctx.font = `600 ${Math.max(13, Math.round(H * 0.022))}px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`;
     ctx.textAlign = "center";
     ctx.fillStyle = `rgba(196, 181, 253, ${alpha})`;
-    ctx.fillText("ESPACIO PARA SOLTAR", W / 2, H * 0.5 - fontSize * 2.6);
+    ctx.fillText("ESPACIO O CLICK PARA SOLTAR", W / 2, H * 0.5 - fontSize * 2.6);
     ctx.textAlign = "left";
   }
 }
