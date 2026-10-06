@@ -1,3 +1,5 @@
+import { music } from "./music";
+
 const BEST_KEY = "uspt-towers-best";
 
 type Phase = "start" | "playing" | "dying" | "gameover";
@@ -125,6 +127,7 @@ function showStart(): void {
 }
 
 function showGameOver(): void {
+  music.stop();
   titleEl.textContent = "GAME OVER";
   msgEl.textContent = "La torre resistió hasta acá";
   statsEl.textContent = `PUNTOS  ${score}   ·   RÉCORD  ${best}`;
@@ -135,6 +138,7 @@ function showGameOver(): void {
 
 function startGame(): void {
   phase = "playing";
+  music.start();
   blocks = [];
   cimiento = makeCimiento();
   score = 0;
@@ -431,6 +435,17 @@ actionBtn.addEventListener("click", (e) => {
 });
 
 window.addEventListener("resize", layout);
+
+document.addEventListener("visibilitychange", () => {
+  if (phase !== "playing") {
+    return;
+  }
+  if (document.hidden) {
+    music.stop();
+  } else {
+    music.start();
+  }
+});
 
 layout();
 showStart();
